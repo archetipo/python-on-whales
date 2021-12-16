@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>docker compose - Python on whales</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Python on whales</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../docker_client/" class="nav-link">Docker client</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sub-commands <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../buildx/" class="dropdown-item">docker buildx</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">docker compose</a>
+</li>
+                                    
+<li>
+    <a href="../config/" class="dropdown-item">docker config</a>
+</li>
+                                    
+<li>
+    <a href="../container/" class="dropdown-item">docker container</a>
+</li>
+                                    
+<li>
+    <a href="../context/" class="dropdown-item">docker context</a>
+</li>
+                                    
+<li>
+    <a href="../image/" class="dropdown-item">docker image</a>
+</li>
+                                    
+<li>
+    <a href="../manifest/" class="dropdown-item">docker manifest</a>
+</li>
+                                    
+<li>
+    <a href="../network/" class="dropdown-item">docker network</a>
+</li>
+                                    
+<li>
+    <a href="../node/" class="dropdown-item">docker node</a>
+</li>
+                                    
+<li>
+    <a href="../plugin/" class="dropdown-item">docker plugin</a>
+</li>
+                                    
+<li>
+    <a href="../secret/" class="dropdown-item">docker secret</a>
+</li>
+                                    
+<li>
+    <a href="../service/" class="dropdown-item">docker service</a>
+</li>
+                                    
+<li>
+    <a href="../stack/" class="dropdown-item">docker stack</a>
+</li>
+                                    
+<li>
+    <a href="../swarm/" class="dropdown-item">docker swarm</a>
+</li>
+                                    
+<li>
+    <a href="../system/" class="dropdown-item">docker system</a>
+</li>
+                                    
+<li>
+    <a href="../task/" class="dropdown-item">docker task</a>
+</li>
+                                    
+<li>
+    <a href="../trust/" class="dropdown-item">docker trust</a>
+</li>
+                                    
+<li>
+    <a href="../volume/" class="dropdown-item">docker volume</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Docker objects <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../docker_objects/builders/" class="dropdown-item">Builders</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/configs/" class="dropdown-item">Configs</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/containers/" class="dropdown-item">Containers</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/images/" class="dropdown-item">Images</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/networks/" class="dropdown-item">Networks</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/nodes/" class="dropdown-item">Nodes</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/plugins/" class="dropdown-item">Plugins</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/secrets/" class="dropdown-item">Secrets</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/services/" class="dropdown-item">Services</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/stacks/" class="dropdown-item">Stacks</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/tasks/" class="dropdown-item">Tasks</a>
+</li>
+                                    
+<li>
+    <a href="../../docker_objects/volumes/" class="dropdown-item">Volumes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User guide <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../user_guide/docker_run/" class="dropdown-item">docker.run() guide</a>
+</li>
+                                    
+<li>
+    <a href="../../user_guide/generic_resources/" class="dropdown-item">Swarm generic resources</a>
+</li>
+                                    
+<li>
+    <a href="../../user_guide/running_python_on_whales_inside_a_container/" class="dropdown-item">Running python-on-whales inside a container</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../buildx/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../config/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#some-notes-about-the-compose-functions" class="nav-link">Some notes about the compose functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#build" class="nav-link">build</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#config" class="nav-link">config</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#create" class="nav-link">create</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#down" class="nav-link">down</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#events" class="nav-link">events</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#exec" class="nav-link">exec</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#is_installed" class="nav-link">is_installed</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#kill" class="nav-link">kill</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#logs" class="nav-link">logs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#pause" class="nav-link">pause</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#port" class="nav-link">port</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#ps" class="nav-link">ps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#pull" class="nav-link">pull</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#push" class="nav-link">push</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#restart" class="nav-link">restart</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#rm" class="nav-link">rm</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#run" class="nav-link">run</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#start" class="nav-link">start</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#stop" class="nav-link">stop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#top" class="nav-link">top</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#unpause" class="nav-link">unpause</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#up" class="nav-link">up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#version" class="nav-link">version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="some-notes-about-the-compose-functions">Some notes about the compose functions</h2>
+<p>Behind the scenes, 
+the <a href="https://github.com/docker/compose-cli">Go implementation of Docker compose</a>
+is called a.k.a. Compose v2, not the <a href="https://github.com/docker/compose">Python implementation</a>.</p>
+<p>You can verify that <code>docker compose</code> is installed by running</p>
+<pre><code>docker compose --help
+</code></pre>
+
+<p>If that doesn't work, then install the cli plugin.
+The instructions are here: https://github.com/docker/compose-cli#compose-v2-aka-local-docker-compose
+it's just a single binary to download.</p>
+<p>The Go implementation of compose is still experimental, so take the appropriate precautions.</p>
+<p>If you don't need to set any project-wide options, like the project name or 
+the compose file path, you can just import <code>docker</code> and start working.</p>
+<pre><code class="python">from python_on_whales import docker
+
+docker.compose.build()
+docker.compose.up()
+...
+docker.compose.down()
+</code></pre>
+
+<p>Otherwise, you have to define your project-wide options only once, when creating the Docker client.</p>
+<pre><code class="python">from python_on_whales import DockerClient
+
+docker = DockerClient(compose_files=[&quot;./my-compose-file.yml&quot;])
+
+docker.compose.build()
+docker.compose.up()
+...
+docker.compose.down()
+</code></pre>
+
+<h4 id="about-dockercomposeimages">About <code>docker.compose.images()</code>.</h4>
+<p>The Docker command line has a <code>docker compose images</code> command. Python-on-whales doesn't have
+an equivalent because it's trivial to do so with existing functions.</p>
+<pre><code>images = [docker.image.inspect(container.image) for container in docker.container.ps()]
+</code></pre>
+
+<ul>
+<li><code>docker.container.ps()</code> returns the list of all containers in the compose stack.</li>
+<li><code>container.image</code> gives you the id of the Docker image of the container as a <code>str</code>.</li>
+<li><code>docker.image.inspect()</code> gives you a <code>python_on_whales.Image</code> from a <code>str</code>.</li>
+</ul>
+<h2 id="build">build</h2>
+<pre><code class="python">docker.compose.build(services=[])
+</code></pre>
+
+<p>Build services declared in a yaml compose file.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>List[str]</code>: The services to build (as strings).
+    If empty (default), all services are built.</li>
+</ul>
+<hr />
+<h2 id="config">config</h2>
+<pre><code class="python">docker.compose.config(return_json=False)
+</code></pre>
+
+<p>Returns the configuration of the compose stack for further inspection.</p>
+<p>For example</p>
+<pre><code class="python">from python_on_whales import docker
+project_config = docker.compose.config()
+print(project_config.services[&quot;my_first_service&quot;].image)
+&quot;redis&quot;
+</code></pre>
+
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>return_json</strong> <code>bool</code>: If <code>False</code>, a <code>ComposeConfig</code> object will be returned, and you
+    'll be able to take advantage of your IDE autocompletion. If you want the
+    full json output, you may use <code>return_json</code>. In this case, you'll get
+    lists and dicts corresponding to the json response, unmodified.
+    It may be useful if you just want to print the config or want to access
+    a field that was not in the <code>ComposeConfig</code> class.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>A <code>ComposeConfig</code> object if <code>return_json</code> is <code>False</code>, and a <code>dict</code> otherwise.</p>
+<hr />
+<h2 id="create">create</h2>
+<pre><code class="python">docker.compose.create(services=[], build=False, force_recreate=False, no_build=False, no_recreate=False)
+</code></pre>
+
+<p>Creates containers for a service.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>build</strong> <code>bool</code>: Build images before starting containers.</li>
+<li><strong>force_recreate</strong> <code>bool</code>: Recreate containers even if their configuration and
+    image haven't changed.</li>
+<li><strong>no_build</strong> <code>bool</code>: Don't build an image, even if it's missing.</li>
+<li><strong>no_recreate</strong>: If containers already exist, don't recreate them.
+    Incompatible with <code>force_recreate=True</code>.</li>
+</ul>
+<hr />
+<h2 id="down">down</h2>
+<pre><code class="python">docker.compose.down(remove_orphans=False, remove_images=None, timeout=None, volumes=False)
+</code></pre>
+
+<p>Stops and removes the containers</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>remove_orphans</strong> <code>bool</code>: Remove containers for services not defined in
+    the Compose file.</li>
+<li><strong>remove_images</strong> <code>Optional[str]</code>: Remove images used by services.
+    <code>"local"</code> remove only images that don't have a custom
+    tag. Possible values are <code>"local"</code> and <code>"all"</code>.</li>
+<li><strong>timeout</strong> <code>Optional[int]</code>: Specify a shutdown timeout in seconds (default 10).</li>
+<li><strong>volumes</strong> <code>bool</code>: Remove named volumes declared in the
+    volumes section of the Compose file and anonymous
+    volumes attached to containers.</li>
+</ul>
+<hr />
+<h2 id="events">events</h2>
+<pre><code class="python">docker.compose.events()
+</code></pre>
+
+<p>Not yet implemented</p>
+<hr />
+<h2 id="exec">exec</h2>
+<pre><code class="python">docker.compose.exec()
+</code></pre>
+
+<p>Not yet implemented</p>
+<hr />
+<h2 id="is_installed">is_installed</h2>
+<pre><code class="python">docker.compose.is_installed()
+</code></pre>
+
+<p>Returns <code>True</code> if docker compose (the one written in Go)
+is installed and working.</p>
+<hr />
+<h2 id="kill">kill</h2>
+<pre><code class="python">docker.compose.kill(services=[], signal=None)
+</code></pre>
+
+<p>Kills the container(s) of a service</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: One or more service(s) to kill</li>
+<li><strong>signal</strong> <code>Optional[str]</code>: the signal to send to the container. Default is <code>"SIGKILL"</code></li>
+</ul>
+<hr />
+<h2 id="logs">logs</h2>
+<pre><code class="python">docker.compose.logs(
+    services=[],
+    tail=None,
+    follow=False,
+    no_log_prefix=False,
+    timestamps=False,
+    since=None,
+    until=None,
+    stream=False,
+)
+</code></pre>
+
+<p>View output from containers</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: One or more service(s) to view</li>
+<li><strong>tail</strong> <code>Optional[str]</code>: Number of lines to show from the end of the logs for each container. (default "all")</li>
+<li><strong>follow</strong> <code>bool</code>: Follow log output <strong><em>WARNING</em></strong>: With this
+    option, <code>docker.compose.logs()</code> will not return at all. Use it exclusively with
+    <code>stream=True</code>. You can loop on the logs but the loop will never end.</li>
+<li><strong>
+no_log_prefix</strong>: Don't print prefix in logs</li>
+<li><strong>timestamps</strong> <code>bool</code>: Show timestamps</li>
+<li><strong>since</strong> <code>Optional[str]</code>: Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)</li>
+<li><strong>until</strong> <code>Optional[str]</code>: Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)</li>
+<li><strong>stream</strong> <code>bool</code>: Similar to the <code>stream</code> argument of <code>docker.run()</code>.
+    This function will then returns and iterator that will yield a
+    tuple <code>(source, content)</code> with <code>source</code> being <code>"stderr"</code> or
+    <code>"stdout"</code>. <code>content</code> is the content of the line as bytes.
+    Take a look at <a href="https://gabrieldemarmiesse.github.io/python-on-whales/user_guide/docker_run/#stream-the-output">the user guide</a>
+    to have an example of the output.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p><code>str</code> if <code>stream=False</code> (the default), <code>Iterable[Tuple[str, bytes]]</code>
+if <code>stream=True</code>.</p>
+<hr />
+<h2 id="pause">pause</h2>
+<pre><code class="python">docker.compose.pause(services=[])
+</code></pre>
+
+<p>Pause one or more services</p>
+<hr />
+<h2 id="port">port</h2>
+<pre><code class="python">docker.compose.port()
+</code></pre>
+
+<p>Not yet implemented</p>
+<hr />
+<h2 id="ps">ps</h2>
+<pre><code class="python">docker.compose.ps()
+</code></pre>
+
+<p>Returns the containers that were created by the current project.</p>
+<p><strong>Returns</strong></p>
+<p>A <code>List[python_on_whales.Container]</code></p>
+<hr />
+<h2 id="pull">pull</h2>
+<pre><code class="python">docker.compose.pull(services=[])
+</code></pre>
+
+<p>Pull service images</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>List[str]</code>: The list of services to select. Only the images of those
+    services will be pulled. If no services are specified (the default
+    behavior) all images of all services are pulled.</li>
+</ul>
+<hr />
+<h2 id="push">push</h2>
+<pre><code class="python">docker.compose.push(services=[])
+</code></pre>
+
+<p>Push service images</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>List[str]</code>: The list of services to select. Only the images of those
+    services will be pushed. If no services are specified (the default
+    behavior) all images of all services are pushed.</li>
+</ul>
+<hr />
+<h2 id="restart">restart</h2>
+<pre><code class="python">docker.compose.restart(services=[], timeout=None)
+</code></pre>
+
+<p>Restart containers</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: The names of one or more services to restart (str or list of str)</li>
+<li><strong>timeout</strong> <code>Optional[Union[int, datetime.timedelta]]</code>: The shutdown timeout (<code>int</code> are interpreted as seconds).
+    <code>None</code> means the CLI default value (10s).
+    See <a href="https://docs.docker.com/engine/reference/commandline/stop/">the docker stop docs</a>
+    for more details about this argument.</li>
+</ul>
+<hr />
+<h2 id="rm">rm</h2>
+<pre><code class="python">docker.compose.rm(services=[], stop=False, volumes=False)
+</code></pre>
+
+<p>Removes stopped service containers</p>
+<p>By default, anonymous volumes attached to containers will not be removed. You
+can override this with <code>volumes=True</code>.</p>
+<p>Any data which is not in a volume will be lost.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: The names of one or more services to remove (str or list of str)</li>
+<li><strong>stop</strong> <code>bool</code>: Stop the containers, if required, before removing</li>
+<li><strong>volumes</strong> <code>bool</code>: Remove any anonymous volumes attached to containers</li>
+</ul>
+<hr />
+<h2 id="run">run</h2>
+<pre><code class="python">docker.compose.run(
+    service,
+    command=[],
+    detach=False,
+    name=None,
+    tty=True,
+    stream=False,
+    dependencies=True,
+    publish=[],
+    remove=False,
+    service_ports=False,
+    use_aliases=False,
+    user=None,
+    workdir=None,
+)
+</code></pre>
+
+<p>Run a one-off command on a service.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>service</strong> <code>str</code>: The name of the service.</li>
+<li><strong>command</strong> <code>List[str]</code>: The command to execute.</li>
+<li><strong>detach</strong> <code>bool</code>: if <code>True</code>, returns immediately with the Container.
+        If <code>False</code>, returns the command stdout as string.</li>
+<li><strong>name</strong> <code>Optional[str]</code>: Assign a name to the container.</li>
+<li><strong>dependencies</strong> <code>bool</code>: Also start linked services.</li>
+<li><strong>publish</strong> <code>List[Union[Tuple[Union[str, int], Union[str, int]], Tuple[Union[str, int], Union[str, int], str]]]</code>: Publish a container's port(s) to the host.</li>
+<li><strong>service_ports</strong> <code>bool</code>: Enable service's ports and map them to the host.</li>
+<li><strong>remove</strong> <code>bool</code>: Automatically remove the container when it exits.</li>
+<li><strong>use_aliases</strong> <code>bool</code>: Use the service's network aliases in the connected network(s).</li>
+<li><strong>tty</strong> <code>bool</code>: Allocate a pseudo-TTY. Allow the process to access your terminal
+    to write on it.</li>
+<li><strong>stream</strong> <code>bool</code>: Similar to <code>docker.run(..., stream=True)</code>.</li>
+<li><strong>user</strong> <code>Optional[str]</code>: Username or UID, format: <code>"&lt;name|uid&gt;[:&lt;group|gid&gt;]"</code></li>
+<li><strong>workdir</strong> <code>Optional[Union[str, pathlib.Path]]</code>: Working directory inside the container</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>Optional[str]</p>
+<hr />
+<h2 id="start">start</h2>
+<pre><code class="python">docker.compose.start(services=[])
+</code></pre>
+
+<p>Start the specified services.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: The names of one or more services to start</li>
+</ul>
+<hr />
+<h2 id="stop">stop</h2>
+<pre><code class="python">docker.compose.stop(services=[], timeout=None)
+</code></pre>
+
+<p>Stop services</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>Union[str, List[str]]</code>: The names of one or more services to stop (str or list of str)</li>
+<li><strong>timeout</strong> <code>Optional[Union[int, datetime.timedelta]]</code>: Number of seconds or timedelta (will be converted to seconds).
+    Specify a shutdown timeout. Default is 10s.</li>
+</ul>
+<hr />
+<h2 id="top">top</h2>
+<pre><code class="python">docker.compose.top()
+</code></pre>
+
+<p>Not yet implemented</p>
+<hr />
+<h2 id="unpause">unpause</h2>
+<pre><code class="python">docker.compose.unpause(services=[])
+</code></pre>
+
+<p>Unpause one or more services</p>
+<hr />
+<h2 id="up">up</h2>
+<pre><code class="python">docker.compose.up(
+    services=[],
+    build=False,
+    detach=False,
+    abort_on_container_exit=False,
+    scales={},
+    attach_dependencies=False,
+    force_recreate=False,
+    no_build=False,
+    color=True,
+    log_prefix=True,
+    start=True,
+)
+</code></pre>
+
+<p>Start the containers.</p>
+<p>Reading the logs of the containers is not yet implemented.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><strong>services</strong> <code>List[str]</code>: The services to start. If empty (default), all services are
+    started.</li>
+<li><strong>build</strong> <code>bool</code>: If <code>True</code>, build the docker images before starting the containers
+    even if a docker image with this name already exists.
+    If <code>False</code> (the default), build only the docker images that do not already
+    exist.</li>
+<li><strong>detach</strong> <code>bool</code>: If <code>True</code>, run the containers in the background. If <code>False</code> this
+    function returns only when all containers have stopped.
+    Incompatible with <code>abort_on_container_exit=True</code>.</li>
+<li><strong>abort_on_container_exit</strong> <code>bool</code>: If <code>True</code> stops all containers if any container was
+    stopped. Incompatible with <code>detach=True</code>.</li>
+<li><strong>scales</strong> <code>Dict[str, int]</code>: Scale SERVICE to NUM instances. Overrides
+    the scale setting in the Compose file if present. For example:
+    <code>scales={"my_service": 2, "my_other_service": 5}</code>.</li>
+<li><strong>attach_dependencies</strong> <code>bool</code>: Attach to dependent containers.</li>
+<li><strong>force_recreate</strong> <code>bool</code>: Recreate containers even if their configuration and image
+    haven't changed.</li>
+<li><strong>no_build</strong> <code>bool</code>: Don't build an image, even if it's missing.</li>
+<li><strong>color</strong> <code>bool</code>: If <code>False</code>, it will produce monochrome output.</li>
+<li><strong>log_prefix</strong> <code>bool</code>: If <code>False</code>, will not display the prefix in the logs.</li>
+<li><strong>start</strong> <code>bool</code>: Start the service after creating them.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p><code>None</code> at the moment. The plan is to be able to capture and stream the logs later.
+It's not yet implemented.</p>
+<hr />
+<h2 id="version">version</h2>
+<pre><code class="python">docker.compose.version()
+</code></pre>
+
+<p>Returns the version of docker compose as a <code>str</code>.</p>
+<hr /></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
